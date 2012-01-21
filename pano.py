@@ -1,12 +1,33 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+# Panorama
+# Copyright (C) 2008, Nirav Patel
+# Copyright (C) 2011, 2012, Alan Aguiar
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Contact information:
+# Alan Aguiar <alanjas@gmail.com>
+# Nirav Patel <sugarlabs@spongezone.net>
 
 import os
 import sys
+import gtk
 import time
 import logging
 sys.path.insert(0, "lib")
-import olpcgames
 import pygame
 from pygame import camera
 from pygame.locals import *
@@ -15,26 +36,11 @@ import stitcher
 log = logging.getLogger( 'Panorama run' )
 log.setLevel( logging.ERROR )
 
-class PanoCapture:
-    def __init__(self, screen):
-        self.size = ( 640, 480 )
-        self.depth = 24
-        self.thumbscale = 4
-        self.display = pygame.display.set_mode( (1200,800), 0)
-        self.display.fill((82, 186, 74))
-        self.fuente = pygame.font.Font(None, 60)
-        self.camlist = camera.list_cameras()
-        self.camera = camera.Camera(self.camlist[0], self.size, "RGB")
-        self.camera.start()
-        self.camera.set_controls(True, False)
-        self.clock = pygame.time.Clock()
-        self.converted = pygame.surface.Surface(self.size, 0, self.display)
-        self.snapshot = pygame.surface.Surface(self.size, 0, self.display)
-        self.tiny = pygame.surface.Surface((self.size[0]/self.thumbscale,self.size[1]/self.thumbscale),0,self.display)
-        self.final = None
-        self.imlist = []
-        self.offset = 20
-        pygame.display.flip()
+class PanoCapture():
+
+    def __init__(self, parent):
+        self.parent = parent
+
         #self.camera.set_controls(brightness = 129)
 
     def show_text(self,texto):
@@ -51,19 +57,60 @@ class PanoCapture:
         self.display.blit(self.snapshot, (500,0))
         pygame.display.flip()
 
+    def add_capture(self):
+        N = len(self.imlist)
+        if not(N == self.max_cant):
+            self.imlist.append(self.snapshot.copy())
+            self.display.blit(self.snapshot, (20,0))
+            self.tiny = pygame.transform.scale(self.snapshot, (self.size[0]/self.thumbscale,self.size[1]/self.thumbscale), self.tiny)
+            self.display.blit(self.tiny,(self.offset,480))
+            self.offset += 3*self.size[0]/(4*self.thumbscale)
+            pygame.display.flip()
+        else:
+            self.show_text('Max cant of captures')
+
     def run(self):
+        self.size = (640, 480)
+        self.depth = 24
+        self.thumbscale = 4
+        pygame.init()
+        pygame.camera.init()
+        self.fuente = pygame.font.Font(None, 60)
+        self.camlist = camera.list_cameras()
+        self.camera = camera.Camera(self.camlist[0], self.size, "RGB")
+        self.camera.set_controls(True, False)
+        self.camera.start()
+        self.clock = pygame.time.Clock()
+        self.final = None
+        self.imlist = []
+        self.offset = 20
+        self.max_cant = 9
+        self.display = pygame.display.get_surface()
+        self.display.fill((82, 186, 74))
+
+        self.converted = pygame.surface.Surface(self.size, 0, self.display)
+        self.snapshot = pygame.surface.Surface(self.size, 0, self.display)
+        self.tiny = pygame.surface.Surface((self.size[0]/self.thumbscale,self.size[1]/self.thumbscale),0,self.display)
+        pygame.display.flip()
+
         going = True
         while going:
+            #GTK events
+            while gtk.events_pending():
+                gtk.main_iteration()
+
             events = pygame.event.get()
             for e in events:
                 if e.type == pygame.USEREVENT:
                     if hasattr(e,"action"):
                         if e.action == 'save_button':
                             self.show_text("Saving")
-                            if not(self.imlist == []):
-                                self.final = stitcher.build_panorama(self,self.imlist)
                             if self.final:
-                                olpcgames.ACTIVITY.save_image(self.final)
+                                self.parent.save_image(self.final)
+                            else:
+                            	if not(self.imlist == []):
+                                	self.final = stitcher.build_panorama(self,self.imlist)
+                                        self.parent.save_image(self.final)
                             pygame.display.flip()
                         elif e.action == 'new_button':
                             self.imlist = []
@@ -72,12 +119,7 @@ class PanoCapture:
                             self.offset = 20
                             pygame.display.flip()
                         elif e.action == 'capture_button':
-                            self.imlist.append(self.snapshot.copy())
-                            self.display.blit(self.snapshot, (20,0))
-                            self.tiny = pygame.transform.scale(self.snapshot, (self.size[0]/self.thumbscale,self.size[1]/self.thumbscale), self.tiny)
-                            self.display.blit(self.tiny,(self.offset,480))
-                            self.offset += 3*self.size[0]/(4*self.thumbscale)
-                            pygame.display.flip()
+                            self.add_capture()
                         elif e.action == 'stitch_button':
                             self.show_text("Processing")
                             if not(self.imlist == []):
@@ -85,32 +127,12 @@ class PanoCapture:
                             pygame.display.flip()
                 elif e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                     going = False
+                    return
                 elif e.type == KEYDOWN and e.key == K_SPACE:
-                    self.imlist.append(self.snapshot.copy())
-                    self.display.blit(self.snapshot, (20,0))
-                    self.tiny = pygame.transform.scale(self.snapshot, (self.size[0]/self.thumbscale,self.size[1]/self.thumbscale), self.tiny)
-                    self.display.blit(self.tiny,(self.offset,480))
-                    self.offset += 3*self.size[0]/(4*self.thumbscale)
-                    pygame.display.flip()
+                    self.add_capture()
+
 
             self.get_and_flip()
             self.clock.tick()
             #print self.clock.get_fps()
 
-
-def main():
-    toolbarheight = 75
-    tabheight = 45
-    pygame.init()
-    camera.init()
-    pygame.display.init()
-    x,y  = pygame.display.list_modes()[0]
-    screen = pygame.display.set_mode((x,y-toolbarheight-tabheight))
-    # create an instance of the game
-    cap = PanoCapture(screen)
-    # start the main loop
-    cap.run()
-
-# make sure that main get's called
-if __name__ == '__main__':
-    main()

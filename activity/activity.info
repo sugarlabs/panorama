@@ -3,8 +3,8 @@ name = Panorama
 bundle_id = org.laptop.PanoramaActivity
 class = activity.PanoramaActivity
 icon = activity-panorama
-activity_version = 2
+activity_version = 3
 host_version = 1
 show_launcher = yes
 license = GPLv3+
-mime_types = image/jpeg
+
