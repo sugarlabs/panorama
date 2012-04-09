@@ -82,25 +82,25 @@ class PanoramaActivity(activity.Activity):
 		
 
         new_button = ToolButton('stock_refresh')
-        new_button.set_tooltip("New Panorama")
+        new_button.set_tooltip(_('New Panorama'))
         new_button.connect('clicked', self.new_event)
         pano_toolbar.insert(new_button, -1)
         new_button.show()
 
         capture_button = ToolButton('add_capture')
-        capture_button.set_tooltip("Add a capture to the Panorama")
+        capture_button.set_tooltip(_('Add a capture to the Panorama'))
         capture_button.connect('clicked', self.capture_event)
         pano_toolbar.insert(capture_button, -1)
         capture_button.show()
 
         stitch_button = ToolButton('format-columns-triple')
-        stitch_button.set_tooltip("Stitch Panorama")
+        stitch_button.set_tooltip(_('Stitch Panorama'))
         stitch_button.connect('clicked', self.stitch_event)
         pano_toolbar.insert(stitch_button, -1)
         stitch_button.show()
 
         save_button = ToolButton('filesave')
-        save_button.set_tooltip("Save Panorama")
+        save_button.set_tooltip(_('Save Panorama'))
         save_button.connect('clicked', self.save_event)
         pano_toolbar.insert(save_button, -1)
         save_button.show()
@@ -137,7 +137,7 @@ class PanoramaActivity(activity.Activity):
 
     def save_image(self,image):
         journalobj = datastore.create()
-        journalobj.metadata['title'] = 'Panorama'
+        journalobj.metadata['title'] = _('Panorama')
         journalobj.metadata['mime_type'] = 'image/jpeg'
 
         #file_path = os.path.join(olpcgames.ACTIVITY.get_activity_root(),'instance','panorama.jpg')
@@ -161,3 +161,4 @@ class PanoramaActivity(activity.Activity):
 
     def stitch_event(self,widget):
         pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='stitch_button'))
+
