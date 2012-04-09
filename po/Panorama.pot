@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-25 14:51-0200\n"
+"POT-Creation-Date: 2012-04-09 18:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,5 +19,22 @@ msgstr ""
 
 #: activity/activity.info:2
 #: /home/alan/Documentos/GIT/panorama/mainline/activity.py:78
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:140
 msgid "Panorama"
+msgstr ""
+
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:85
+msgid "New Panorama"
+msgstr ""
+
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:91
+msgid "Add a capture to the Panorama"
+msgstr ""
+
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:97
+msgid "Stitch Panorama"
+msgstr ""
+
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:103
+msgid "Save Panorama"
 msgstr ""
