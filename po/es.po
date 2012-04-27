@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-19 00:28-0300\n"
+"PO-Revision-Date: 2012-04-26 19:34+0200\n"
+"Last-Translator: dearmas <piegrande46@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:78
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:140
+msgid "Panorama"
+msgstr "Panorama"
+
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:85
+msgid "New Panorama"
+msgstr "Nuevo Panorama"
+
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:91
+msgid "Add a capture to the Panorama"
+msgstr "Agregar captura al Panorama"
+
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:97
+msgid "Stitch Panorama"
+msgstr "Pegar Panorama"
+
+#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:103
+msgid "Save Panorama"
+msgstr "Guardar Panorama"
