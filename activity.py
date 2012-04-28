@@ -31,18 +31,11 @@ import stitcher
 import sugargame
 import sugargame.canvas
 from sugar.activity import activity
-try:
-    from sugar.graphics.toolbarbox import ToolbarBox
-    from sugar.graphics.toolbutton import ToolButton
-    have_toolbox = True
-except ImportError:
-    have_toolbox = False
-
-if have_toolbox:
-    from sugar.activity.widgets import ActivityToolbarButton
-    from sugar.activity.widgets import StopButton
-
 from sugar.datastore import datastore
+from sugar.graphics.toolbarbox import ToolbarBox
+from sugar.activity.widgets import ActivityToolbarButton
+from sugar.activity.widgets import StopButton
+from sugar.graphics.toolbutton import ToolButton
 
 from gettext import gettext as _
 
@@ -62,24 +55,12 @@ class PanoramaActivity(activity.Activity):
 
     def build_toolbar(self):
 
+        toolbox = ToolbarBox()
+        activity_button = ActivityToolbarButton(self)
+        toolbox.toolbar.insert(activity_button, -1)
+        activity_button.show()
 
-        if have_toolbox:
-            toolbox = ToolbarBox()
-            activity_button = ActivityToolbarButton(self)
-            toolbox.toolbar.insert(activity_button, -1)
-            activity_button.show()
-
-            pano_toolbar = toolbox.toolbar
-
-        else:
-            games_toolbar = gtk.Toolbar()
-            toolbox = activity.ActivityToolbox(self)
-            self.set_toolbox(toolbox)
-            toolbox.add_toolbar(_('Panorama'), games_toolbar)
-            
-            #toolbox.set_current_toolbar(1)
-            pano_toolbar = games_toolbar
-		
+        pano_toolbar = toolbox.toolbar
 
         new_button = ToolButton('stock_refresh')
         new_button.set_tooltip(_('New Panorama'))
@@ -105,42 +86,24 @@ class PanoramaActivity(activity.Activity):
         pano_toolbar.insert(save_button, -1)
         save_button.show()
 
+        separator = gtk.SeparatorToolItem()
+        separator.props.draw = True
+        separator.set_expand(True)
+        pano_toolbar.insert(separator,5)
 
-        if have_toolbox:
-            separator = gtk.SeparatorToolItem()
-            separator.props.draw = True
-            separator.set_expand(True)
-            pano_toolbar.insert(separator,5)
-            #toolbox.toolbar.props.page.insert(separator, -1)
+        stop_button = StopButton(self)
+        stop_button.props.accelerator = '<Ctrl>q'
+        pano_toolbar.insert(stop_button, 6)
+        stop_button.show()
 
-            stop_button = StopButton(self)
-            stop_button.props.accelerator = '<Ctrl>q'
-            pano_toolbar.insert(stop_button, 6)
-            stop_button.show()
-
-        #else:
-            #caja.add_toolbar("Panoramas", pano_toolbar)
-		
-		    #caja.show()
-		    #self.set_toolbox(toolbox)
-
-		    #caja.show_all()
-		    #self.set_toolbox(caja)
-
-		    # que hace esto
-
-		    #caja.set_current_toolbar(1)
-        pano_toolbar.show()
         self.set_toolbar_box(toolbox)
+        
         toolbox.show()
-
 
     def save_image(self,image):
         journalobj = datastore.create()
         journalobj.metadata['title'] = _('Panorama')
         journalobj.metadata['mime_type'] = 'image/jpeg'
-
-        #file_path = os.path.join(olpcgames.ACTIVITY.get_activity_root(),'instance','panorama.jpg')
 
         file_path = os.path.join(os.environ['SUGAR_ACTIVITY_ROOT'], 'data', 'panorama.jpg')
 
