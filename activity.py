@@ -55,6 +55,8 @@ class PanoramaActivity(activity.Activity):
 
     def build_toolbar(self):
 
+        self.max_participants = 1
+
         toolbox = ToolbarBox()
         activity_button = ActivityToolbarButton(self)
         toolbox.toolbar.insert(activity_button, -1)
