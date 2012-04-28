@@ -127,12 +127,14 @@ class PanoCapture():
                             pygame.display.flip()
                 elif e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                     going = False
-                    return
                 elif e.type == KEYDOWN and e.key == K_SPACE:
                     self.add_capture()
 
 
             self.get_and_flip()
             self.clock.tick()
-            #print self.clock.get_fps()
+
+        if self.camera:
+            self.camera.stop()
+        
 
