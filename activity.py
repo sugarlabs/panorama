@@ -89,7 +89,7 @@ class PanoramaActivity(activity.Activity):
         save_button.show()
 
         separator = gtk.SeparatorToolItem()
-        separator.props.draw = True
+        separator.props.draw = False
         separator.set_expand(True)
         pano_toolbar.insert(separator,5)
 
@@ -99,8 +99,8 @@ class PanoramaActivity(activity.Activity):
         stop_button.show()
 
         self.set_toolbar_box(toolbox)
-        
-        toolbox.show()
+
+        toolbox.show_all()
 
     def save_image(self,image):
         journalobj = datastore.create()
