@@ -32,8 +32,6 @@ from pygame import camera
 from pygame.locals import *
 import stitcher
 
-log = logging.getLogger('Panorama run')
-log.setLevel( logging.ERROR )
 
 class PanoCapture():
 
