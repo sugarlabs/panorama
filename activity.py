@@ -23,11 +23,8 @@
 # Nirav Patel <sugarlabs@spongezone.net>
 
 import os
-import sys
 import gtk
-sys.path.insert(0, "lib")
 import pygame
-import stitcher
 import sugargame
 import sugargame.canvas
 from sugar.activity import activity

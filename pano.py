@@ -27,13 +27,12 @@ import sys
 import gtk
 import time
 import logging
-sys.path.insert(0, "lib")
 import pygame
 from pygame import camera
 from pygame.locals import *
 import stitcher
 
-log = logging.getLogger( 'Panorama run' )
+log = logging.getLogger('Panorama run')
 log.setLevel( logging.ERROR )
 
 class PanoCapture():
