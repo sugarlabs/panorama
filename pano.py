@@ -27,10 +27,13 @@ import sys
 import gtk
 import time
 import logging
-import pygame
-from pygame import camera
-from pygame.locals import *
 import stitcher
+try:
+    import pygame
+    from pygame.locals import *
+    from pygame import camera
+except ImportError:
+    print 'Error in import Pygame. This activity requires Pygame 1.9'
 
 
 class PanoCapture():
