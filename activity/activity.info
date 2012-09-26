@@ -6,3 +6,4 @@ exec = sugar-activity activity.PanoramaActivity
 icon = activity-panorama
 show_launcher = yes
 license = GPLv3+
+summary = Activity that allows captures panoramic views
