@@ -6,35 +6,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 00:28-0300\n"
-"PO-Revision-Date: 2012-04-26 20:39+0200\n"
+"POT-Creation-Date: 2012-09-27 14:57-0400\n"
+"PO-Revision-Date: 2012-10-08 16:04+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:78
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:140
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
 msgid "Panorama"
 msgstr "Panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:85
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid "Activity that allows captures panoramic views"
+msgstr "Aktivitet som gør det muligt optage panoramiske udsigter"
+
+#: activity.py:65
 msgid "New Panorama"
 msgstr "Nyt panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:91
+#: activity.py:71
 msgid "Add a capture to the Panorama"
 msgstr "Tilføj et optagelse til Panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:97
+#: activity.py:77
 msgid "Stitch Panorama"
 msgstr "Sammesæt panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:103
+#: activity.py:83
 msgid "Save Panorama"
 msgstr "Gem panorama"
