@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-27 14:57-0400\n"
+"PO-Revision-Date: 2012-09-27 20:38+0200\n"
+"Last-Translator: Yannis <kiolalis@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:104
+msgid "Panorama"
+msgstr "Πανόραμα"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid "Activity that allows captures panoramic views"
+msgstr ""
+
+#: activity.py:65
+msgid "New Panorama"
+msgstr "Νέο πανόραμα"
+
+#: activity.py:71
+msgid "Add a capture to the Panorama"
+msgstr "Προσθήκη στιγμιότυπου στο πανόραμα"
+
+#: activity.py:77
+msgid "Stitch Panorama"
+msgstr "Συρραφή πανοράματος"
+
+#: activity.py:83
+msgid "Save Panorama"
+msgstr "Αποθήκευση πανοράματος"
