@@ -80,7 +80,7 @@ class PanoramaActivity(activity.Activity):
         pano_toolbar.insert(stitch_button, -1)
         stitch_button.show()
 
-        stiching_auto = ToolButton('media-playback-stop')
+        stiching_auto = ToolButton('media-playback-start')
         stiching_auto.set_tooltip(_('Enable auto-stich'))
         stiching_auto.connect('clicked', self.change_stich)
         pano_toolbar.insert(stiching_auto, -1)
@@ -121,7 +121,7 @@ class PanoramaActivity(activity.Activity):
     def change_stich(self, options):
         self.auto_stich = not self.auto_stich
         self.actividad.auto_stiching(self.auto_stich)
-        if not self.auto_stich:
+        if self.auto_stich:
             options.set_icon('media-playback-stop')
             options.set_tooltip(_('Disable auto-stich'))
         else:
