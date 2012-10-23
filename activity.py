@@ -43,6 +43,7 @@ class PanoramaActivity(activity.Activity):
     def __init__(self, handle):
         activity.Activity.__init__(self, handle)
 
+        self.auto_stich = False
         self.actividad = pano.PanoCapture(self)
 
         self.build_toolbar()
@@ -79,6 +80,11 @@ class PanoramaActivity(activity.Activity):
         pano_toolbar.insert(stitch_button, -1)
         stitch_button.show()
 
+        stiching_auto = ToolButton('media-playback-stop')
+        stiching_auto.set_tooltip(_('Enable auto-stich'))
+        stiching_auto.connect('clicked', self.change_stich)
+        pano_toolbar.insert(stiching_auto, -1)
+
         save_button = ToolButton('filesave')
         save_button.set_tooltip(_('Save Panorama'))
         save_button.connect('clicked', self.save_event)
@@ -88,11 +94,11 @@ class PanoramaActivity(activity.Activity):
         separator = gtk.SeparatorToolItem()
         separator.props.draw = False
         separator.set_expand(True)
-        pano_toolbar.insert(separator,5)
+        pano_toolbar.insert(separator,-1)
 
         stop_button = StopButton(self)
         stop_button.props.accelerator = '<Ctrl>q'
-        pano_toolbar.insert(stop_button, 6)
+        pano_toolbar.insert(stop_button, -1)
         stop_button.show()
 
         self.set_toolbar_box(toolbox)
@@ -112,6 +118,16 @@ class PanoramaActivity(activity.Activity):
 
         journalobj.destroy()
 
+    def change_stich(self, options):
+        self.auto_stich = not self.auto_stich
+        self.actividad.auto_stiching(self.auto_stich)
+        if not self.auto_stich:
+            options.set_icon('media-playback-stop')
+            options.set_tooltip(_('Disable auto-stich'))
+        else:
+            options.set_icon('media-playback-start')
+            options.set_tooltip(_('Enable auto-stich'))
+
     def save_event(self,widget):
         pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='save_button'))
 
@@ -123,4 +139,22 @@ class PanoramaActivity(activity.Activity):
 
     def stitch_event(self,widget):
         pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='stitch_button'))
+
+
+class Combo(gtk.ComboBox):
+
+    def __init__(self, options):
+
+        self.liststore = gtk.ListStore(str)
+
+        for o in options:
+            self.liststore.append([o])
+
+        gtk.ComboBox.__init__(self, self.liststore)
+
+        cell = gtk.CellRendererText()
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
+
+        self.set_active(0)
 

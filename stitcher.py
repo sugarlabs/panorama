@@ -25,7 +25,7 @@
 import pygame
 import numpy
 
-def build_panorama(self,images):
+def build_panorama(self, images, auto_stich):
     N = len(images)
     a = 20
     d=[0]
@@ -41,18 +41,24 @@ def build_panorama(self,images):
 
     #And now the rest
     for i in range(1,N):
-        arrays.append(pygame.surfarray.array3d(images[i]))
-        arrays[i] = numpy.asarray(arrays[i]).sum(axis = 2)
-        d.append(determine_offset(arrays[i-1],arrays[i]))
+        if auto_stich:
+            arrays.append(pygame.surfarray.array3d(images[i]))
+            arrays[i] = numpy.asarray(arrays[i]).sum(axis = 2)
+            d.append(determine_offset(arrays[i-1],arrays[i]))
+            a += (640-d[i])/4
+        else:
+            a += 640/4
         small = pygame.transform.scale(images[i], (160,120), small)
-        a += (640-d[i])/4
         self.display.blit(small,(a,600))
         pygame.display.flip()
 
     final = pygame.surface.Surface(((a-20)*4+640,480),0,self.display)
     a=-640
     for i in range(N):
-        a+=640-d[i]
+        if auto_stich:
+            a+=640-d[i]
+        else:
+            a+=640
         final.blit(images[i],(a,0))
     #a = 640
     #for i in range(1,N):

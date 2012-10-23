@@ -40,8 +40,12 @@ class PanoCapture():
 
     def __init__(self, parent):
         self.parent = parent
+        self.auto_stich = False
 
         #self.camera.set_controls(brightness = 129)
+
+    def auto_stiching(self, option):
+        self.auto_stich = option
 
     def show_text(self,texto):
         text = self.fuente.render(texto, 1, (255,0,0))
@@ -108,9 +112,9 @@ class PanoCapture():
                             if self.final:
                                 self.parent.save_image(self.final)
                             else:
-                            	if not(self.imlist == []):
-                                	self.final = stitcher.build_panorama(self,self.imlist)
-                                        self.parent.save_image(self.final)
+                                if not(self.imlist == []):
+                                    self.final = stitcher.build_panorama(self, self.imlist, self.auto_stich)
+                                    self.parent.save_image(self.final)
                             pygame.display.flip()
                         elif e.action == 'new_button':
                             self.imlist = []
@@ -123,7 +127,7 @@ class PanoCapture():
                         elif e.action == 'stitch_button':
                             self.show_text("Processing")
                             if not(self.imlist == []):
-                                self.final = stitcher.build_panorama(self,self.imlist)
+                                self.final = stitcher.build_panorama(self, self.imlist, self.auto_stich)
                             pygame.display.flip()
                 elif e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                     going = False
