@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-27 14:57-0400\n"
-"PO-Revision-Date: 2012-10-08 01:13+0200\n"
+"POT-Creation-Date: 2012-10-25 00:32-0400\n"
+"PO-Revision-Date: 2012-10-29 16:04+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
-#: activity.py:104
+#: activity.py:110
 msgid "Panorama"
 msgstr "Panorama"
 
@@ -27,18 +27,26 @@ msgstr "Panorama"
 msgid "Activity that allows captures panoramic views"
 msgstr "Activity that allows captures panoramic views"
 
-#: activity.py:65
+#: activity.py:66
 msgid "New Panorama"
 msgstr "New Panorama"
 
-#: activity.py:71
+#: activity.py:72
 msgid "Add a capture to the Panorama"
 msgstr "Add a capture to the Panorama"
 
-#: activity.py:77
+#: activity.py:78
 msgid "Stitch Panorama"
 msgstr "Stitch Panorama"
 
-#: activity.py:83
+#: activity.py:84 activity.py:129
+msgid "Enable auto-stitch"
+msgstr "Enable auto-stitch"
+
+#: activity.py:89
 msgid "Save Panorama"
 msgstr "Save Panorama"
+
+#: activity.py:126
+msgid "Disable auto-stitch"
+msgstr "Disable auto-stitch"
