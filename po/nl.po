@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 00:28-0300\n"
-"PO-Revision-Date: 2012-08-20 22:23+0200\n"
+"POT-Creation-Date: 2012-10-25 00:32-0400\n"
+"PO-Revision-Date: 2012-11-05 22:26+0200\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -17,24 +17,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:78
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:140
+#. TRANS: "name" option from activity.info file
+#: activity.py:110
 msgid "Panorama"
 msgstr "Panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:85
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid "Activity that allows captures panoramic views"
+msgstr "Activiteit voor opname van panoramische beelden"
+
+#: activity.py:66
 msgid "New Panorama"
 msgstr "Nieuw Panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:91
+#: activity.py:72
 msgid "Add a capture to the Panorama"
 msgstr "Voeg een opname aan het Panorama toe"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:97
+#: activity.py:78
 msgid "Stitch Panorama"
 msgstr "Stik Panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:103
+#: activity.py:84 activity.py:129
+msgid "Enable auto-stitch"
+msgstr "Auto-samenplakken aan"
+
+#: activity.py:89
 msgid "Save Panorama"
 msgstr "Bewaar Panorama"
+
+#: activity.py:126
+msgid "Disable auto-stitch"
+msgstr "Auto-samenplakken uit"
