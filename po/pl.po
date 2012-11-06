@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 00:28-0300\n"
-"PO-Revision-Date: 2012-05-28 15:38+0200\n"
-"Last-Translator: Marcin <ulinski.marcin@gmail.com>\n"
+"POT-Creation-Date: 2012-10-25 00:32-0400\n"
+"PO-Revision-Date: 2012-09-14 01:31+0200\n"
+"Last-Translator: Kamila <kamilafilipowska@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -18,24 +18,36 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:78
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:140
+#. TRANS: "name" option from activity.info file
+#: activity.py:110
 msgid "Panorama"
 msgstr "Panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:85
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid "Activity that allows captures panoramic views"
+msgstr ""
+
+#: activity.py:66
 msgid "New Panorama"
 msgstr "Nowa panorama"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:91
+#: activity.py:72
 msgid "Add a capture to the Panorama"
-msgstr ""
+msgstr "Dodaj ujęcie do panoramy"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:97
+#: activity.py:78
 msgid "Stitch Panorama"
 msgstr "Zszyj panoramę"
 
-#: /home/alan/Documentos/GIT/panorama/mainline/activity.py:103
+#: activity.py:84 activity.py:129
+msgid "Enable auto-stitch"
+msgstr ""
+
+#: activity.py:89
 msgid "Save Panorama"
 msgstr "Zapisz panoramę"
+
+#: activity.py:126
+msgid "Disable auto-stitch"
+msgstr ""

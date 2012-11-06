@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-27 14:57-0400\n"
-"PO-Revision-Date: 2012-09-27 20:38+0200\n"
-"Last-Translator: Yannis <kiolalis@gmail.com>\n"
+"POT-Creation-Date: 2012-10-25 00:32-0400\n"
+"PO-Revision-Date: 2012-10-17 21:09+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -18,27 +18,35 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
-#: activity.py:104
+#: activity.py:110
 msgid "Panorama"
 msgstr "Πανόραμα"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
 msgid "Activity that allows captures panoramic views"
-msgstr ""
+msgstr "Δραστηριότητα που επιτρέπει τη λήψη πανοραμικών εικόνων"
 
-#: activity.py:65
+#: activity.py:66
 msgid "New Panorama"
 msgstr "Νέο πανόραμα"
 
-#: activity.py:71
+#: activity.py:72
 msgid "Add a capture to the Panorama"
 msgstr "Προσθήκη στιγμιότυπου στο πανόραμα"
 
-#: activity.py:77
+#: activity.py:78
 msgid "Stitch Panorama"
 msgstr "Συρραφή πανοράματος"
 
-#: activity.py:83
+#: activity.py:84 activity.py:129
+msgid "Enable auto-stitch"
+msgstr ""
+
+#: activity.py:89
 msgid "Save Panorama"
 msgstr "Αποθήκευση πανοράματος"
+
+#: activity.py:126
+msgid "Disable auto-stitch"
+msgstr ""
