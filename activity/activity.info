@@ -1,6 +1,6 @@
 [Activity]
 name = Panorama
-activity_version = 8
+activity_version = 9
 bundle_id = org.laptop.PanoramaActivity
 exec = sugar-activity activity.PanoramaActivity
 icon = activity-panorama
