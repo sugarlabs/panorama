@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-25 00:32-0400\n"
+"PO-Revision-Date: 2016-03-06 19:00+0000\n"
+"Last-Translator: Robert <rbuj@fedoraproject.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1457290822.000000\n"
+
+#. TRANS: "name" option from activity.info file
+#: activity.py:110
+msgid "Panorama"
+msgstr "Panorama"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid "Activity that allows captures panoramic views"
+msgstr "Activitat que permet capturar vistes panoràmiques"
+
+#: activity.py:66
+msgid "New Panorama"
+msgstr "Nou panorama"
+
+#: activity.py:72
+msgid "Add a capture to the Panorama"
+msgstr "Afegeix una captura al panorama"
+
+#: activity.py:78
+msgid "Stitch Panorama"
+msgstr "Cus el panorama"
+
+#: activity.py:84 activity.py:129
+msgid "Enable auto-stitch"
+msgstr "Habilita l'auto-cosit"
+
+#: activity.py:89
+msgid "Save Panorama"
+msgstr "Desa el panorama"
+
+#: activity.py:126
+msgid "Disable auto-stitch"
+msgstr "Inhabilita l'auto-cosit"
