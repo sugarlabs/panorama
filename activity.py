@@ -23,16 +23,18 @@
 # Nirav Patel <sugarlabs@spongezone.net>
 
 import os
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 import pygame
 import sugargame
 import sugargame.canvas
-from sugar.activity import activity
-from sugar.datastore import datastore
-from sugar.graphics.toolbarbox import ToolbarBox
-from sugar.activity.widgets import ActivityToolbarButton
-from sugar.activity.widgets import StopButton
-from sugar.graphics.toolbutton import ToolButton
+from sugar3.activity import activity
+from sugar3.datastore import datastore
+from sugar3.graphics.toolbarbox import ToolbarBox
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.activity.widgets import StopButton
+from sugar3.graphics.toolbutton import ToolButton
 
 from gettext import gettext as _
 
@@ -44,12 +46,14 @@ class PanoramaActivity(activity.Activity):
         activity.Activity.__init__(self, handle)
 
         self.auto_stich = False
-        self.actividad = pano.PanoCapture(self)
-
+        self.game = pano.PanoCapture(self)
+        self.game.canvas = sugargame.canvas.PygameCanvas(
+                self,
+                main=self.game.run,
+                modules=[pygame.display, pygame.font])
+        self.set_canvas(self.game.canvas)
+        self.game.canvas.grab_focus()  
         self.build_toolbar()
-        self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
-        self.set_canvas(self._pygamecanvas)
-        self._pygamecanvas.run_pygame(self.actividad.run)
 
     def build_toolbar(self):
 
@@ -91,7 +95,7 @@ class PanoramaActivity(activity.Activity):
         pano_toolbar.insert(save_button, -1)
         save_button.show()
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.props.draw = False
         separator.set_expand(True)
         pano_toolbar.insert(separator,-1)
@@ -120,12 +124,12 @@ class PanoramaActivity(activity.Activity):
 
     def change_stich(self, options):
         self.auto_stich = not self.auto_stich
-        self.actividad.auto_stiching(self.auto_stich)
+        self.game.auto_stiching(self.auto_stich)
         if self.auto_stich:
-            options.set_icon('media-playback-stop')
+            options.set_icon_name('media-playback-stop')
             options.set_tooltip(_('Disable auto-stitch'))
         else:
-            options.set_icon('media-playback-start')
+            options.set_icon_name('media-playback-start')
             options.set_tooltip(_('Enable auto-stitch'))
 
     def save_event(self,widget):
@@ -141,18 +145,18 @@ class PanoramaActivity(activity.Activity):
         pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='stitch_button'))
 
 
-class Combo(gtk.ComboBox):
+class Combo(Gtk.ComboBox):
 
     def __init__(self, options):
 
-        self.liststore = gtk.ListStore(str)
+        self.liststore = Gtk.ListStore(str)
 
         for o in options:
             self.liststore.append([o])
 
-        gtk.ComboBox.__init__(self, self.liststore)
+        GObject.GObject.__init__(self, self.liststore)
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 

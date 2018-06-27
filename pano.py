@@ -24,7 +24,7 @@
 
 import os
 import sys
-import gtk
+from gi.repository import Gtk
 import time
 import logging
 import stitcher
@@ -100,8 +100,8 @@ class PanoCapture():
         going = True
         while going:
             #GTK events
-            while gtk.events_pending():
-                gtk.main_iteration()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
 
             events = pygame.event.get()
             for e in events:
