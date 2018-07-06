@@ -2,7 +2,7 @@
 name = Panorama
 activity_version = 9
 bundle_id = org.laptop.PanoramaActivity
-exec = sugar-activity activity.PanoramaActivity
+exec = sugar-activity3 activity.PanoramaActivity
 icon = activity-panorama
 show_launcher = yes
 license = GPLv3+
