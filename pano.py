@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Panorama
@@ -66,9 +66,9 @@ class PanoCapture():
         if not(N == self.max_cant):
             self.imlist.append(self.snapshot.copy())
             self.display.blit(self.snapshot, (20,0))
-            self.tiny = pygame.transform.scale(self.snapshot, (self.size[0]/self.thumbscale,self.size[1]/self.thumbscale), self.tiny)
+            self.tiny = pygame.transform.scale(self.snapshot, (self.size[0]//self.thumbscale,self.size[1]//self.thumbscale), self.tiny)
             self.display.blit(self.tiny,(self.offset,480))
-            self.offset += 3*self.size[0]/(4*self.thumbscale)
+            self.offset += 3*self.size[0]//(4*self.thumbscale)
             pygame.display.flip()
         else:
             self.show_text('Max cant of captures')
@@ -97,7 +97,7 @@ class PanoCapture():
 
         self.converted = pygame.surface.Surface(self.size, 0, self.display)
         self.snapshot = pygame.surface.Surface(self.size, 0, self.display)
-        self.tiny = pygame.surface.Surface((self.size[0]/self.thumbscale,self.size[1]/self.thumbscale),0,self.display)
+        self.tiny = pygame.surface.Surface((self.size[0]//self.thumbscale,self.size[1]//self.thumbscale),0,self.display)
         pygame.display.flip()
 
         going = True
