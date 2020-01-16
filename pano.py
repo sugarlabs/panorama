@@ -26,6 +26,7 @@ import os
 import sys
 from gi.repository import Gtk
 import time
+from gettext import gettext as _
 import logging
 import stitcher
 try:
@@ -41,7 +42,8 @@ class PanoCapture():
     def __init__(self, parent):
         self.parent = parent
         self.auto_stich = False
-
+        self.has_camera = False
+        self._show_err_msg = False
         #self.camera.set_controls(brightness = 129)
 
     def auto_stiching(self, option):
@@ -81,12 +83,20 @@ class PanoCapture():
         pygame.camera.init()
         self.fuente = pygame.font.Font(None, 60)
         self.camlist = camera.list_cameras()
-        self.camera = camera.Camera(self.camlist[0], self.size, "RGB")
         try:
-        	self.camera.set_controls(hfilp=True)
-        except SystemError:
-        	pass
-        self.camera.start()
+            self.camera = camera.Camera(self.camlist[0], self.size, "RGB")
+            self.has_camera = True
+            self.camera.start()
+            try:
+                self.camera.set_controls(hfilp=True)
+            except SystemError:
+                pass
+            self._show_err_msg = False
+        except IndexError:
+            self._show_err_msg = True
+            self.message = _('Camera not found')
+
+        
         self.clock = pygame.time.Clock()
         self.final = None
         self.imlist = []
@@ -101,23 +111,29 @@ class PanoCapture():
         pygame.display.flip()
 
         going = True
+        
+
+        
         while going:
-            #GTK events
+            # GTK events
             while Gtk.events_pending():
                 Gtk.main_iteration()
 
             events = pygame.event.get()
             for e in events:
-                if e.type == pygame.USEREVENT:
+                if e.type == pygame.USEREVENT and self.has_camera:
                     if hasattr(e,"action"):
                         if e.action == 'save_button':
-                            self.show_text("Saving")
-                            if self.final:
-                                self.parent.save_image(self.final)
-                            else:
-                                if not(self.imlist == []):
-                                    self.final = stitcher.build_panorama(self, self.imlist, self.auto_stich)
+                            if self.has_camera:
+                                self.show_text("Saving")
+                                if self.final:
                                     self.parent.save_image(self.final)
+                                else:
+                                    if not(self.imlist == []):
+                                        self.final = stitcher.build_panorama(self, self.imlist, self.auto_stich)
+                                        self.parent.save_image(self.final)
+                            else:
+                                self.show_text(_("Cannot save"))
                             pygame.display.flip()
                         elif e.action == 'new_button':
                             self.imlist = []
@@ -134,14 +150,15 @@ class PanoCapture():
                             pygame.display.flip()
                 elif e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                     going = False
-                elif e.type == KEYDOWN and e.key == K_SPACE:
+                elif e.type == KEYDOWN and e.key == K_SPACE and self.has_camera:
                     self.add_capture()
 
+            if self.has_camera:
+                self.get_and_flip()
+            else:
+                self.show_text(self.message)
 
-            self.get_and_flip()
             self.clock.tick()
 
-        if self.camera:
+        if self.has_camera and self.camera: 
             self.camera.stop()
-        
-

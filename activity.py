@@ -144,6 +144,9 @@ class PanoramaActivity(activity.Activity):
     def stitch_event(self,widget):
         pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='stitch_button'))
 
+    def can_close(self):
+        return True
+
 
 class Combo(Gtk.ComboBox):
 
