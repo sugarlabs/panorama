@@ -96,7 +96,6 @@ class PanoCapture():
             self._show_err_msg = True
             self.message = _('Camera not found')
 
-        
         self.clock = pygame.time.Clock()
         self.final = None
         self.imlist = []
@@ -111,9 +110,6 @@ class PanoCapture():
         pygame.display.flip()
 
         going = True
-        
-
-        
         while going:
             # GTK events
             while Gtk.events_pending():
@@ -160,5 +156,5 @@ class PanoCapture():
 
             self.clock.tick()
 
-        if self.has_camera and self.camera: 
+        if self.has_camera and self.camera:
             self.camera.stop()
