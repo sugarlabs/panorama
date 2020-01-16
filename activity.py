@@ -22,23 +22,22 @@
 # Alan Aguiar <alanjas@gmail.com>
 # Nirav Patel <sugarlabs@spongezone.net>
 
+import pano
+from gettext import gettext as _
+from sugar3.graphics.toolbutton import ToolButton
+from sugar3.activity.widgets import StopButton
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.graphics.toolbarbox import ToolbarBox
+from sugar3.datastore import datastore
+from sugar3.activity import activity
+import sugargame.canvas
+import sugargame
+import pygame
+from gi.repository import Gtk
 import os
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
-import pygame
-import sugargame
-import sugargame.canvas
-from sugar3.activity import activity
-from sugar3.datastore import datastore
-from sugar3.graphics.toolbarbox import ToolbarBox
-from sugar3.activity.widgets import ActivityToolbarButton
-from sugar3.activity.widgets import StopButton
-from sugar3.graphics.toolbutton import ToolButton
 
-from gettext import gettext as _
-
-import pano
 
 class PanoramaActivity(activity.Activity):
 
@@ -48,11 +47,11 @@ class PanoramaActivity(activity.Activity):
         self.auto_stich = False
         self.game = pano.PanoCapture(self)
         self.game.canvas = sugargame.canvas.PygameCanvas(
-                self,
-                main=self.game.run,
-                modules=[pygame.display, pygame.font])
+            self,
+            main=self.game.run,
+            modules=[pygame.display, pygame.font])
         self.set_canvas(self.game.canvas)
-        self.game.canvas.grab_focus()  
+        self.game.canvas.grab_focus()
         self.build_toolbar()
 
     def build_toolbar(self):
@@ -98,7 +97,7 @@ class PanoramaActivity(activity.Activity):
         separator = Gtk.SeparatorToolItem()
         separator.props.draw = False
         separator.set_expand(True)
-        pano_toolbar.insert(separator,-1)
+        pano_toolbar.insert(separator, -1)
 
         stop_button = StopButton(self)
         stop_button.props.accelerator = '<Ctrl>q'
@@ -109,14 +108,15 @@ class PanoramaActivity(activity.Activity):
 
         toolbox.show_all()
 
-    def save_image(self,image):
+    def save_image(self, image):
         journalobj = datastore.create()
         journalobj.metadata['title'] = _('Panorama')
         journalobj.metadata['mime_type'] = 'image/jpeg'
 
-        file_path = os.path.join(os.environ['SUGAR_ACTIVITY_ROOT'], 'data', 'panorama.jpg')
+        file_path = os.path.join(
+            os.environ['SUGAR_ACTIVITY_ROOT'], 'data', 'panorama.jpg')
 
-        pygame.image.save(image,file_path)
+        pygame.image.save(image, file_path)
         journalobj.set_file_path(file_path)
         datastore.write(journalobj)
 
@@ -132,17 +132,21 @@ class PanoramaActivity(activity.Activity):
             options.set_icon_name('media-playback-start')
             options.set_tooltip(_('Enable auto-stitch'))
 
-    def save_event(self,widget):
-        pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='save_button'))
+    def save_event(self, widget):
+        pygame.event.post(pygame.event.Event(
+            pygame.USEREVENT, action='save_button'))
 
-    def new_event(self,widget):
-        pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='new_button'))
+    def new_event(self, widget):
+        pygame.event.post(pygame.event.Event(
+            pygame.USEREVENT, action='new_button'))
 
-    def capture_event(self,widget):
-        pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='capture_button'))
+    def capture_event(self, widget):
+        pygame.event.post(pygame.event.Event(
+            pygame.USEREVENT, action='capture_button'))
 
-    def stitch_event(self,widget):
-        pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='stitch_button'))
+    def stitch_event(self, widget):
+        pygame.event.post(pygame.event.Event(
+            pygame.USEREVENT, action='stitch_button'))
 
     def can_close(self):
         return True
@@ -164,4 +168,3 @@ class Combo(Gtk.ComboBox):
         self.add_attribute(cell, 'text', 0)
 
         self.set_active(0)
-

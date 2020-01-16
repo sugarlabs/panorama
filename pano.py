@@ -49,8 +49,8 @@ class PanoCapture():
     def auto_stiching(self, option):
         self.auto_stich = option
 
-    def show_text(self,texto):
-        text = self.fuente.render(texto, 1, (255,0,0))
+    def show_text(self, texto):
+        text = self.fuente.render(texto, 1, (255, 0, 0))
         textrect = text.get_rect()
         textrect.center = (820, 240)
         self.display.blit(text, textrect)
@@ -59,17 +59,18 @@ class PanoCapture():
     def get_and_flip(self):
         self.snapshot = self.camera.get_image(self.snapshot)
         #box = self.display.blit(self.snapshot, (500,0))
-        #pygame.display.update(box)
-        self.display.blit(self.snapshot, (500,0))
+        # pygame.display.update(box)
+        self.display.blit(self.snapshot, (500, 0))
         pygame.display.flip()
 
     def add_capture(self):
         N = len(self.imlist)
         if not(N == self.max_cant):
             self.imlist.append(self.snapshot.copy())
-            self.display.blit(self.snapshot, (20,0))
-            self.tiny = pygame.transform.scale(self.snapshot, (self.size[0]//self.thumbscale,self.size[1]//self.thumbscale), self.tiny)
-            self.display.blit(self.tiny,(self.offset,480))
+            self.display.blit(self.snapshot, (20, 0))
+            self.tiny = pygame.transform.scale(
+                self.snapshot, (self.size[0]//self.thumbscale, self.size[1]//self.thumbscale), self.tiny)
+            self.display.blit(self.tiny, (self.offset, 480))
             self.offset += 3*self.size[0]//(4*self.thumbscale)
             pygame.display.flip()
         else:
@@ -106,7 +107,8 @@ class PanoCapture():
 
         self.converted = pygame.surface.Surface(self.size, 0, self.display)
         self.snapshot = pygame.surface.Surface(self.size, 0, self.display)
-        self.tiny = pygame.surface.Surface((self.size[0]//self.thumbscale,self.size[1]//self.thumbscale),0,self.display)
+        self.tiny = pygame.surface.Surface(
+            (self.size[0]//self.thumbscale, self.size[1]//self.thumbscale), 0, self.display)
         pygame.display.flip()
 
         going = True
@@ -118,7 +120,7 @@ class PanoCapture():
             events = pygame.event.get()
             for e in events:
                 if e.type == pygame.USEREVENT and self.has_camera:
-                    if hasattr(e,"action"):
+                    if hasattr(e, "action"):
                         if e.action == 'save_button':
                             if self.has_camera:
                                 self.show_text("Saving")
@@ -126,7 +128,8 @@ class PanoCapture():
                                     self.parent.save_image(self.final)
                                 else:
                                     if not(self.imlist == []):
-                                        self.final = stitcher.build_panorama(self, self.imlist, self.auto_stich)
+                                        self.final = stitcher.build_panorama(
+                                            self, self.imlist, self.auto_stich)
                                         self.parent.save_image(self.final)
                             else:
                                 self.show_text(_("Cannot save"))
@@ -142,7 +145,8 @@ class PanoCapture():
                         elif e.action == 'stitch_button':
                             self.show_text("Processing")
                             if not(self.imlist == []):
-                                self.final = stitcher.build_panorama(self, self.imlist, self.auto_stich)
+                                self.final = stitcher.build_panorama(
+                                    self, self.imlist, self.auto_stich)
                             pygame.display.flip()
                 elif e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                     going = False

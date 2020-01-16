@@ -25,43 +25,44 @@
 import pygame
 import numpy
 
+
 def build_panorama(self, images, auto_stich):
     N = len(images)
     a = 20
-    d=[0]
+    d = [0]
 
-    small = pygame.surface.Surface((160,120),0,self.display)
+    small = pygame.surface.Surface((160, 120), 0, self.display)
 
-    #Translate and print first Image
+    # Translate and print first Image
     arrays = [pygame.surfarray.array3d(images[0])]
-    arrays[0] = numpy.asarray(arrays[0]).sum(axis = 2)
-    small = pygame.transform.scale(images[0], (160,120), small)
-    self.display.blit(small,(a,600))
+    arrays[0] = numpy.asarray(arrays[0]).sum(axis=2)
+    small = pygame.transform.scale(images[0], (160, 120), small)
+    self.display.blit(small, (a, 600))
     pygame.display.flip()
 
-    #And now the rest
-    for i in range(1,N):
+    # And now the rest
+    for i in range(1, N):
         if auto_stich:
             arrays.append(pygame.surfarray.array3d(images[i]))
-            arrays[i] = numpy.asarray(arrays[i]).sum(axis = 2)
-            d.append(determine_offset(arrays[i-1],arrays[i]))
+            arrays[i] = numpy.asarray(arrays[i]).sum(axis=2)
+            d.append(determine_offset(arrays[i-1], arrays[i]))
             a += (640-d[i])/4
         else:
             a += 640/4
-        small = pygame.transform.scale(images[i], (160,120), small)
-        self.display.blit(small,(a,600))
+        small = pygame.transform.scale(images[i], (160, 120), small)
+        self.display.blit(small, (a, 600))
         pygame.display.flip()
 
-    final = pygame.surface.Surface(((a-20)*4+640,480),0,self.display)
-    a=-640
+    final = pygame.surface.Surface(((a-20)*4+640, 480), 0, self.display)
+    a = -640
     for i in range(N):
         if auto_stich:
-            a+=640-d[i]
+            a += 640-d[i]
         else:
-            a+=640
-        final.blit(images[i],(a,0))
+            a += 640
+        final.blit(images[i], (a, 0))
     #a = 640
-    #for i in range(1,N):
+    # for i in range(1,N):
     #    images[i-1].set_alpha(127)
     #    final.blit(images[i-1],(a - d[i],0),(a - d[i],0,50,480))
     #    a+=640-d[i]
@@ -81,17 +82,17 @@ def determine_offset(a1, a2):
 
     #sa1 = a1[::pyramid,::pyramid]
     #sa2 = a2[::pyramid,::pyramid]
-    #for i in range(0,maxoverlap/pyramid):
+    # for i in range(0,maxoverlap/pyramid):
     #    piece = numpy.subtract(sa1[sY-i-sslicewidth,:],sa2[0:sslicewidth,:])
     #    piece = numpy.multiply(piece,piece)
     #    ssd.append(piece.sum())
     #lowest = numpy.argmin(ssd)*pyramid
-    #print lowest
+    # print lowest
     #ssd = []
-    #for i in range(max(0,lowest-10),lowest+10):
+    # for i in range(max(0,lowest-10),lowest+10):
 
-    for i in range(0,maxoverlap):
-        piece = numpy.subtract(a1[Y-i-slicewidth:Y-i,:],a2[0:slicewidth,:])
-        piece = numpy.multiply(piece,piece)
+    for i in range(0, maxoverlap):
+        piece = numpy.subtract(a1[Y-i-slicewidth:Y-i, :], a2[0:slicewidth, :])
+        piece = numpy.multiply(piece, piece)
         ssd.append(piece.sum())
     return numpy.argmin(ssd)+slicewidth
