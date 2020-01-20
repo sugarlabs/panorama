@@ -24,7 +24,7 @@
 
 import os
 import sys
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 import time
 from gettext import gettext as _
 import logging
@@ -42,7 +42,7 @@ class PanoCapture():
     def __init__(self, parent):
         self.parent = parent
         self.auto_stich = False
-        self.has_camera = False
+        self._has_camera = False
         self._show_err_msg = False
         #self.camera.set_controls(brightness = 129)
 
@@ -81,19 +81,19 @@ class PanoCapture():
         self.depth = 24
         self.thumbscale = 4
         pygame.init()
-        pygame.camera.init()
+        camera.init()
         self.fuente = pygame.font.Font(None, 60)
         self.camlist = camera.list_cameras()
-        try:
+        if len(self.camlist) != 0:
             self.camera = camera.Camera(self.camlist[0], self.size, "RGB")
-            self.has_camera = True
+            self._has_camera = True
             self.camera.start()
             try:
                 self.camera.set_controls(hfilp=True)
             except SystemError:
                 pass
             self._show_err_msg = False
-        except IndexError:
+        else:
             self._show_err_msg = True
             self.message = _('Camera not found')
 
@@ -119,10 +119,10 @@ class PanoCapture():
 
             events = pygame.event.get()
             for e in events:
-                if e.type == pygame.USEREVENT and self.has_camera:
+                if e.type == pygame.USEREVENT and self._has_camera:
                     if hasattr(e, "action"):
                         if e.action == 'save_button':
-                            if self.has_camera:
+                            if self._has_camera:
                                 self.show_text("Saving")
                                 if self.final:
                                     self.parent.save_image(self.final)
@@ -150,15 +150,21 @@ class PanoCapture():
                             pygame.display.flip()
                 elif e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                     going = False
-                elif e.type == KEYDOWN and e.key == K_SPACE and self.has_camera:
+                elif e.type == KEYDOWN and e.key == K_SPACE and self._has_camera:
                     self.add_capture()
 
-            if self.has_camera:
+            if self._has_camera:
                 self.get_and_flip()
             else:
                 self.show_text(self.message)
 
             self.clock.tick()
 
-        if self.has_camera and self.camera:
+        if self._has_camera and self.camera:
             self.camera.stop()
+
+    def get_has_camera(self):
+        return self._has_camera
+
+    has_camera = GObject.Property(getter=get_has_camera, type=bool,
+                                  default=False)

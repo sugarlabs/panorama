@@ -108,6 +108,13 @@ class PanoramaActivity(activity.Activity):
 
         toolbox.show_all()
 
+        if not self.game.has_camera:
+            new_button.set_sensitive(False)
+            capture_button.set_sensitive(False)
+            stitch_button.set_sensitive(False)
+            stiching_auto.set_sensitive(False)
+            save_button.set_sensitive(False)
+
     def save_image(self, image):
         journalobj = datastore.create()
         journalobj.metadata['title'] = _('Panorama')
