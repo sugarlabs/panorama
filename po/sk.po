@@ -7,47 +7,47 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 00:32-0400\n"
-"PO-Revision-Date: 2017-03-18 22:03+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"PO-Revision-Date: 2018-08-11 18:34+0000\n"
+"Last-Translator: jana <jpastyrova@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: fa\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1489874615.000000\n"
+"X-POOTLE-MTIME: 1534012459.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity.py:110
 msgid "Panorama"
-msgstr "چشم انداز (پانوراما)"
+msgstr "Panoráma"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
 msgid "Activity that allows captures panoramic views"
-msgstr "عملکردی که اجازه دریافت نماهای پانوراما را میدهد"
+msgstr "Činnosť, ktorá Vám umožní zachytiť panoramatické zábery"
 
 #: activity.py:66
 msgid "New Panorama"
-msgstr "پانورامای جدید"
+msgstr "Nová panoráma"
 
 #: activity.py:72
 msgid "Add a capture to the Panorama"
-msgstr "اضافه کردن یک عکس جدید به پانوراما"
+msgstr "Pridajte záber k Panoráme"
 
 #: activity.py:78
 msgid "Stitch Panorama"
-msgstr "وصل کردن پانوراما"
+msgstr "Pripevnite Panorámu"
 
 #: activity.py:84 activity.py:129
 msgid "Enable auto-stitch"
-msgstr "فعال کردن وصل خودکار"
+msgstr "Umožnite automatické pripevnenie"
 
 #: activity.py:89
 msgid "Save Panorama"
-msgstr "ذخیره کردن پانوراما"
+msgstr "Uložte Panorámu"
 
 #: activity.py:126
 msgid "Disable auto-stitch"
-msgstr "غیر فعال کردن وصل خودکار"
+msgstr "Vypnite automatické pripevnenie"
