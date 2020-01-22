@@ -96,6 +96,7 @@ class PanoCapture():
         else:
             self._show_err_msg = True
             self.message = _('Camera not found')
+            self.parent.configure_buttons()
 
         self.clock = pygame.time.Clock()
         self.final = None
