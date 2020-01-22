@@ -89,7 +89,7 @@ class PanoCapture():
             self._has_camera = True
             self.camera.start()
             try:
-                self.camera.set_controls(hfilp=True)
+                self.camera.set_controls(hflip=True)
             except SystemError:
                 pass
             self._show_err_msg = False
