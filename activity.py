@@ -52,7 +52,7 @@ class PanoramaActivity(activity.Activity):
             modules=[pygame.display, pygame.font])
         self.set_canvas(self.game.canvas)
         self.game.canvas.grab_focus()
-        self.build_toolbar()
+        self.buttons = self.build_toolbar()
 
     def build_toolbar(self):
 
@@ -107,13 +107,11 @@ class PanoramaActivity(activity.Activity):
         self.set_toolbar_box(toolbox)
 
         toolbox.show_all()
+        return [new_button, capture_button, stitch_button, stiching_auto, save_button]
 
-        if not self.game.has_camera:
-            new_button.set_sensitive(False)
-            capture_button.set_sensitive(False)
-            stitch_button.set_sensitive(False)
-            stiching_auto.set_sensitive(False)
-            save_button.set_sensitive(False)
+    def configure_buttons(self):
+        for i in self.buttons:
+            i.set_sensitive(False)
 
     def save_image(self, image):
         journalobj = datastore.create()
