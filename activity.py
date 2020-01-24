@@ -22,6 +22,9 @@
 # Alan Aguiar <alanjas@gmail.com>
 # Nirav Patel <sugarlabs@spongezone.net>
 
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 import pano
 from gettext import gettext as _
 from sugar3.graphics.toolbutton import ToolButton
@@ -33,10 +36,7 @@ from sugar3.activity import activity
 import sugargame.canvas
 import sugargame
 import pygame
-from gi.repository import Gtk
 import os
-import gi
-gi.require_version('Gtk', '3.0')
 
 
 class PanoramaActivity(activity.Activity):
