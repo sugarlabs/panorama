@@ -168,9 +168,3 @@ class PanoCapture():
 
         if self._has_camera and self.camera:
             self.camera.stop()
-
-    def get_has_camera(self):
-        return self._has_camera
-
-    has_camera = GObject.Property(getter=get_has_camera, type=bool,
-                                  default=False)
