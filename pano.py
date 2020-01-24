@@ -81,9 +81,9 @@ class PanoCapture():
         self.depth = 24
         self.thumbscale = 4
         pygame.init()
-        camera.init()
+        # camera.init()
         self.fuente = pygame.font.Font(None, 60)
-        self.camlist = camera.list_cameras()
+        self.camlist = [] #camera.list_cameras()
         if len(self.camlist):
             self.camera = camera.Camera(self.camlist[0], self.size, "RGB")
             self._has_camera = True
@@ -161,10 +161,10 @@ class PanoCapture():
 
             if self._has_camera:
                 self.get_and_flip()
+                self.clock.tick()
             else:
                 self.show_text(self.message)
-
-            self.clock.tick()
+                self.clock.tick(5)
 
         if self._has_camera and self.camera:
             self.camera.stop()
