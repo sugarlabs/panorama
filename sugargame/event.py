@@ -7,6 +7,7 @@ import pygame.event
 
 class _MockEvent(object):
     def __init__(self, keyval):
+        super().__init__()
         self.keyval = keyval
 
 
