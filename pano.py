@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Panorama
@@ -33,7 +33,7 @@ try:
     from pygame.locals import *
     from pygame import camera
 except ImportError:
-    print 'Error in import Pygame. This activity requires Pygame 1.9'
+    print ('Error in import Pygame. This activity requires Pygame 1.9')
 
 
 class PanoCapture():
@@ -81,7 +81,10 @@ class PanoCapture():
         pygame.camera.init()
         self.fuente = pygame.font.Font(None, 60)
         self.camlist = camera.list_cameras()
-        self.camera = camera.Camera(self.camlist[0], self.size, "RGB")
+        if self.camlist:
+            self.camera = camera.Camera(self.camlist[0], self.size, "RGB")
+        else:
+            print("No cameras detected.")
         self.camera.set_controls(True, False)
         self.camera.start()
         self.clock = pygame.time.Clock()
@@ -140,5 +143,3 @@ class PanoCapture():
 
         if self.camera:
             self.camera.stop()
-        
-

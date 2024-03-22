@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Panorama
@@ -25,7 +25,7 @@
 import os
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk , GObject
 import pygame
 import sugargame
 import sugargame.canvas
@@ -52,7 +52,7 @@ class PanoramaActivity(activity.Activity):
                 main=self.game.run,
                 modules=[pygame.display, pygame.font])
         self.set_canvas(self.game.canvas)
-        self.game.canvas.grab_focus()  
+        self.game.canvas.grab_focus()
         self.build_toolbar()
 
     def build_toolbar(self):
@@ -132,17 +132,17 @@ class PanoramaActivity(activity.Activity):
             options.set_icon_name('media-playback-start')
             options.set_tooltip(_('Enable auto-stitch'))
 
-    def save_event(self,widget):
-        pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='save_button'))
+    def save_event(self, widget):
+        pygame.event.post(pygame.event.Event(pygame.USEREVENT, {'action': 'save_button'}))
 
-    def new_event(self,widget):
-        pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='new_button'))
+    def new_event(self, widget):
+        pygame.event.post(pygame.event.Event(pygame.USEREVENT, {'action': 'new_button'}))
 
-    def capture_event(self,widget):
-        pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='capture_button'))
+    def capture_event(self, widget):
+        pygame.event.post(pygame.event.Event(pygame.USEREVENT, {'action': 'capture_button'}))
 
-    def stitch_event(self,widget):
-        pygame.event.post(pygame.event.Event(pygame.USEREVENT, action='stitch_button'))
+    def stitch_event(self, widget):
+        pygame.event.post(pygame.event.Event(pygame.USEREVENT, {'action': 'stitch_button'}))
 
 
 class Combo(Gtk.ComboBox):
@@ -161,4 +161,3 @@ class Combo(Gtk.ComboBox):
         self.add_attribute(cell, 'text', 0)
 
         self.set_active(0)
-
