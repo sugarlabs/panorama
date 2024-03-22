@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Panorama
@@ -33,7 +33,7 @@ try:
     from pygame.locals import *
     from pygame import camera
 except ImportError:
-    print 'Error in import Pygame. This activity requires Pygame 1.9'
+    print ('Error in import Pygame. This activity requires Pygame 1.9')
 
 
 class PanoCapture():
@@ -140,5 +140,3 @@ class PanoCapture():
 
         if self.camera:
             self.camera.stop()
-        
-

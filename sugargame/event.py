@@ -168,7 +168,7 @@ class Translator(object):
             self.__keystate[keycode] = type == pygame.KEYDOWN
             if type == pygame.KEYUP:
                 mod = self._keymods()
-            ukey = unichr(Gdk.keyval_to_unicode(event.keyval))
+            ukey = chr(Gdk.keyval_to_unicode(event.keyval))
             if ukey == '\000':
                 ukey = ''
             evt = pygame.event.Event(type, key=keycode, unicode=ukey, mod=mod)
@@ -248,7 +248,7 @@ class Translator(object):
     def _post(self, evt):
         try:
             pygame.event.post(evt)
-        except pygame.error, e:
+        except pygame.error as e:
             if str(e) == 'video system not initialized':
                 pass
             elif str(e) == 'Event queue full':
