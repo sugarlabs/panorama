@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-16 14:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: an\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: activity/activity.info:2 activity.py:113
+msgid "Panorama"
+msgstr ""
+
+#: activity/activity.info:3
+msgid "Activity that allows captures panoramic views"
+msgstr ""
+
+#: activity.py:69
+msgid "New Panorama"
+msgstr ""
+
+#: activity.py:75
+msgid "Add a capture to the Panorama"
+msgstr ""
+
+#: activity.py:81
+msgid "Stitch Panorama"
+msgstr ""
+
+#: activity.py:87 activity.py:133
+msgid "Enable auto-stitch"
+msgstr ""
+
+#: activity.py:92
+msgid "Save Panorama"
+msgstr ""
+
+#: activity.py:130
+msgid "Disable auto-stitch"
+msgstr ""
+
+#: pano.py:98
+msgid "Camera not found"
+msgstr ""
+
+#: pano.py:135
+msgid "Cannot save"
+msgstr ""
